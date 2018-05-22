@@ -174,8 +174,8 @@ class RNVideoTrimmer: NSObject {
 
   @objc func trim(_ source: String, options: NSDictionary, callback: @escaping RCTResponseSenderBlock) {
 
-      var sTime = options.object(forKey: "startTime") as? Float
-      var eTime = options.object(forKey: "endTime") as? Float
+      var sTime = options.object(forKey: "startTime") as? Double
+      var eTime = options.object(forKey: "endTime") as? Double
       let quality = ((options.object(forKey: "quality") as? String) != nil) ? options.object(forKey: "quality") as! String : ""
       let saveToCameraRoll = options.object(forKey: "saveToCameraRoll") as? Bool ?? false
       let saveWithCurrentDate = options.object(forKey: "saveWithCurrentDate") as? Bool ?? false
@@ -190,7 +190,7 @@ class RNVideoTrimmer: NSObject {
       let sourceURL = getSourceURL(source: source)
       let asset = AVAsset(url: sourceURL as URL)
       if eTime == nil {
-          eTime = Float(asset.duration.seconds)
+          eTime = Double(asset.duration.seconds)
       }
       if sTime == nil {
           sTime = 0
